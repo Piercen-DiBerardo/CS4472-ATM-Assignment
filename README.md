@@ -1,6 +1,6 @@
 # CS4472 ATM - Assignment Repository
 
-Course project for CS4472B Software Specification, Testing, and Quality
+Course project for CS4472A Software Specification, Testing, and Quality
 Assurance (Western University). An ATM system backed by a small bank server,
 used as the system under test for the course assignments.
 
