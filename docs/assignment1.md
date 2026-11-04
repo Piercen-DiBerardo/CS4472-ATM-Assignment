@@ -2,7 +2,7 @@
 
 ## 1. ATM Session
 
-*To be completed using Robust Worst Case Boundary Value Analysis for the PIN and withdrawal amount.*
+*To be completed using Robust Worst Case Boundary Value Analysis for the PIN and withdrawal amount By Gurshaan Deol.*
 
 ## 2. Withdrawal
 
