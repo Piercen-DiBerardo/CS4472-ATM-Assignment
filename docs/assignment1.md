@@ -426,6 +426,18 @@ For my process to calculate the test cases, I split the possible valid and inval
 | 8 | Fail |
 | 9 | Fail |
 
+### 3.4 Fault Localization: 
+
+| Failing Test | Suspected Fault (file, method, line) | One-line justification |
+|---|---|---|
+| DepositTest 1, 2, 3 | FeesCalculator.java, calculateDepositInterest, lines 33-39 | The method has no input validation, so invalid inputs return a fee instead of throwing an exception |
+| DepositTest 4 | FeesCalculator.java, calculateDepositInterest, line 50 (interestPercentage = 0.002) | interestPercentage should be 0%, but line 50 charges 0.2% |
+| DepositTest 5 | FeesCalculator.java, calculateDepositInterest, line 39 (amount > 100.00) | Condition should be > $50, not > $100 |
+| DepositTest 7 | FeesCalculator.java, calculateDepositInterest, line 64 (interestPercentage = 0.0) | interestPercentage should be 0.1% but line 64 charges 0% |
+| DepositTest 8 | FeesCalculator.java, calculateDepositInterest, line 54 (amount > 500.00) | Condition should be > $250, not > $500 |
+| DepositTest 9 | FeesCalculator.java, calculateDepositInterest, line 62 (interestPercentage = 0.005) | interestPercentage should be 0%, not 0.5% |
+
+
 ## 4. Transfer
 
 ### 4.1 Test Design and Assumptions
