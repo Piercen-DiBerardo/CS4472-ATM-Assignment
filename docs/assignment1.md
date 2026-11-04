@@ -10,7 +10,7 @@
 
 ## 3. Deposit
 
-### Process and Assumptions:
+### 3.1 Process and Assumptions:
 
 **Analysis technique:** Weak Robust Equivalence Class Analysis
 
@@ -41,7 +41,7 @@ For my process to calculate the test cases, I split the possible valid and inval
      - ii. balance is more than $2500, up to $10,000
      - iii. balance is more than $10,000
 
-### Test Cases:
+### 3.2 Test Cases:
 
 | Test ID | Groups Covered | Student? | Amount deposited | Account balance | Expected Fee |
 |---|---|---|---|---|---|
@@ -55,7 +55,7 @@ For my process to calculate the test cases, I split the possible valid and inval
 | 8 | 3aii, 3bii | no | $500 | $5000 | $4.00 |
 | 9 | 3ai, 3biii | no | $150 | $50,000 | $0.00 | 
 
-### Test Results:
+### 3.3 Test Results:
 
 | Test ID | Result |
 |---|---|
@@ -68,10 +68,6 @@ For my process to calculate the test cases, I split the possible valid and inval
 | 7 | Fail |
 | 8 | Fail |
 | 9 | Fail |
-
-## 3. Deposit
-
-*To be completed using Weak Robust Equivalence Class Analysis.*
 
 ## 4. Transfer
 
