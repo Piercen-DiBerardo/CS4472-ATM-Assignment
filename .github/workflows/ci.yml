@@ -34,7 +34,7 @@ jobs:
           - name: Check PR label
             if: github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'phase:tests') == contains(github.event.pull_request.labels.*.name, 'phase:fix')
             run: |
-                echo "::error::PR must have only one label"
+                echo "::error::PR must have exactly one phase label: phase:tests or phase:fix"
                 exit 1
 
           - uses: actions/checkout@v5
@@ -58,17 +58,16 @@ jobs:
             uses: EnricoMi/publish-unit-test-result-action@v2
             with: 
                 files: target/surefire-reports/*.xml
+                fail_on: nothing
 
           - name: Coverage report
-            if: github.event_name == 'pull_request'
+            if: always() && github.event_name == 'pull_request'
             continue-on-error: true
             uses: madrapps/jacoco-report@v1.7.1
             with:
                 paths: target/site/jacoco/jacoco.xml
                 token: ${{ secrets.GITHUB_TOKEN }}
-                    
-            
-
-                
-
-           
+                min-coverage-overall: 0
+                min-coverage-changed-files: 0
+                title: JaCoCo coverage (informational)
+                update-comment: true

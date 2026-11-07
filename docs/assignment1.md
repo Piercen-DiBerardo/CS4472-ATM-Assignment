@@ -15,7 +15,7 @@
 | PIN | Exactly 5 digits (`'0'`–`'9'`) | `InvalidPinFormatException` |
 | Withdrawal amount | Can be dispensed in $20 and $50 bills, and does not exceed the $1,000 daily limit | `InvalidAmountException` |
 
-**Account setup:** the account has a $1,000 daily limit and a $5,000 available balance. The $1,000 daily limit is the upper boundary for the amount. The bank layer is replaced with a Mockito `MessageDispatcher` that accepts the credentials and returns a successful `TransactionResult` with a $5,000 balance. The tests only check whether the session raises the exception.
+**Account setup:** each test creates a fresh test-bank `WithdrawalAccount` with a $5,000 opening balance, a $1,000 daily limit, and $0 withdrawn today. The mocked `MessageDispatcher` delegates withdrawals to that account. Successful withdrawals reduce its balance and daily allowance; over-limit requests return an unsuccessful result without changing either. This is an in-memory test fixture, not a new production-bank feature: the starter has no daily-limit configuration API. The $1,000 daily limit is the upper boundary for the amount. The tests still exercise the real `Session.setAmount` and require `InvalidAmountException` for invalid amounts; a declined bank result alone does not satisfy that exception expectation.
 
 **PIN input.** The PIN has two dimensions.
 - *Length:* the valid length is exactly 5, so min = max = 5. The robust values are 4 (min−), 5 (min, nominal, max) and 6 (max+). I also added the extremes 0 (empty) and 1.
@@ -57,9 +57,9 @@
 
 | Test ID | Amount | Boundary | Expected | Actual | Result |
 |---|---:|---|---|---|:---:|
-| A01 | −50 | below min | `InvalidAmountException` | Accepted | FAIL |
+| A01 | −50 | below min | `InvalidAmountException` | No exception; test bank declines | FAIL |
 | A02 | −1 | below min | `InvalidAmountException` | `InvalidAmountException` | PASS |
-| A03 | 0 | min− | `InvalidAmountException` | Accepted | FAIL |
+| A03 | 0 | min− | `InvalidAmountException` | No exception; test bank declines | FAIL |
 | A04 | 19 | min− | `InvalidAmountException` | `InvalidAmountException` | PASS |
 | A05 | 20 | min | Accepted | Accepted | PASS |
 | A06 | 21 | min+ | `InvalidAmountException` | `InvalidAmountException` | PASS |
@@ -70,8 +70,8 @@
 | A11 | 999 | max− | `InvalidAmountException` | `InvalidAmountException` | PASS |
 | A12 | 1000 | max (daily limit) | Accepted | Accepted | PASS |
 | A13 | 1001 | max+ | `InvalidAmountException` | `InvalidAmountException` | PASS |
-| A14 | 1020 | over limit, dispensable | `InvalidAmountException` | Accepted | FAIL |
-| A15 | 1050 | over limit, dispensable | `InvalidAmountException` | Accepted | FAIL |
+| A14 | 1020 | over limit, dispensable | `InvalidAmountException` | No exception; test bank declines | FAIL |
+| A15 | 1050 | over limit, dispensable | `InvalidAmountException` | No exception; test bank declines | FAIL |
 | A16 | 10 | undispensable | `InvalidAmountException` | `InvalidAmountException` | PASS |
 | A17 | 30 | undispensable | `InvalidAmountException` | `InvalidAmountException` | PASS |
 
@@ -90,7 +90,7 @@
 | SF-01 | P01–P05, P08 | `atm.utils.FormatChecker.checkPinFormat`: `pin.length == 4` and the `for` loop bound `i < 4` | The check requires a 4-character PIN, so every valid 5-digit PIN is rejected (P01–P05) and a 4-digit PIN is accepted (P08). The specification says 5 digits. |
 | SF-02 | A08 | `atm.utils.CashValidator.validateWithdrawal`: the nested `% 50` then `% 20` test | It only accepts an amount if the remainder after `% 50` is divisible by 20. $60 (3 × $20) leaves a remainder of 10 and is rejected, even though it can be dispensed. |
 | SF-03 | A01, A03 | `atm.utils.CashValidator.validateWithdrawal` (no lower bound) | `amount % 50 == 0` is true for 0 and −50, so they are accepted. No `amount > 0` check exists in `CashValidator` or in `Session.setAmount`. |
-| SF-04 | A14, A15 | `atm.session.Session.setAmount` (no daily-limit check) | Nothing compares the amount with the $1,000 daily limit. Any amount that passes `validateWithdrawal` (such as $1,020 or $1,050) is accepted. |
+| SF-04 | A14, A15 | `atm.session.Session.setAmount` (no daily-limit check) | The Session does not compare the amount with the configured fixture limit or raise `InvalidAmountException`. The test bank declines $1,020 and $1,050, but `Session.setAmount` still returns normally, violating the stated session-level exception assumption. |
 
 **Note:** SF-01 hides a possible second fault in the same condition, `pin[i] >= '9'` (it should be `> '9'`). The digit `'9'` would be rejected even after the length is fixed. P05 (`99999`) fails for the length fault today, so the tests can't isolate this second fault yet. It will show up in the fix phase.
 
@@ -100,360 +100,50 @@
 
 **Method tested:** `bank.utils.FeesCalculator.calculateWithdrawalFee()`
 
-**Testing technique:** Robust Worst-Case Boundary Value Analysis (RWC-BVA).
+**Testing technique:** Robust Worst Case Boundary Value Analysis (RWC-BVA). Every selected amount, balance, student status, and day is combined with every other selected value. Multiple invalid inputs may occur together: the single-fault restriction applies to the Session section, not this fee suite.
 
-I tested the withdrawal fee calculation as a black-box method by deriving the expected fee, then comparing it with the fee returned by the program. The method takes four inputs: the withdrawal amount, account balance, student status, and day of the week. The test suite uses combinations of the selected values for all four inputs. The balance values focus on the two fee thresholds ($1,000 and $5,000), and the Boolean and day inputs cover student/non-student and weekday/weekend cases.
+The specified fee rules are unchanged: students pay 0% on weekdays and 0.1% on weekends; non-students pay 0.3% below $1,000, 0.1% from $1,000 to below $5,000, and 0% at or above $5,000.
 
-The specified fee rules are:
+**Input domains and assumptions:**
 
-| Client | Condition | Expected fee |
-|---|---|---|
-| Student | Weekday | 0% of withdrawal amount |
-| Student | Weekend | 0.1% of withdrawal amount |
-| Non-student | Balance < $1,000 | 0.3% of withdrawal amount |
-| Non-student | $1,000 ≤ balance < $5,000 | 0.1% of withdrawal amount |
-| Non-student | Balance ≥ $5,000 | $0 |
+- The amount is a positive dollar amount, account balance is nonnegative, student status is Boolean, and the calendar day is 1 (Sunday) through 7 (Saturday). Amounts and balances are probed with a $0.01 step. Fee precision is retained without cent rounding because the specification provides no rounding rule; the assertion tolerance is $0.000000001.
+- There is no specified maximum amount or balance for this method. No artificial upper bound is imposed. The Session's denomination restrictions and $1,000 daily limit do not define this fee calculator's domain. Boundary probes cover the lower monetary boundaries and each fee-tier boundary, plus nominal representatives.
+- **Invalid-input oracle assumption:** amount <= 0, balance < 0, or a day outside 1..7 should cause `IllegalArgumentException`. The handout does not specify rejection behavior for this method. These robustness failures are reported separately as assumption-based observations, not confirmed violations of a stated exception requirement. `boolean` has no representable invalid value in this Java signature.
 
-**Input selection:**
+| Input | Selected boundary and nominal values |
+|---|---|
+| Amount | -0.01, 0 (invalid); 0.01 (minimum), 0.02 (minimum+), 500 (nominal); no finite upper bound specified |
+| Account balance | -0.01 (minimum-), 0 (minimum), 0.01 (minimum+), 999.99/1000/1000.01, 3000 (nominal), 4999.99/5000/5000.01 |
+| Student status | true, false |
+| Calendar day | 0 (minimum-), 1 (minimum), 2 (minimum+), 3, 4 (nominal), 5, 6 (maximum-), 7 (maximum), 8 (maximum+) |
 
-| Input | Values tested | Reason |
-|---|---|---|
-| Withdrawal amount | $20, $50, $100, $200, $500, $999, $1,000 | Seven representative amounts to check that the fee scales with amount; these are **not** all formal amount boundary values, because the fee specification does not define an amount limit. |
-| Account balance | −$1, $0, $500, $999, $1,000, $1,001, $3,000, $4,999, $5,000, $5,001 | Values near the specified $1,000 and $5,000 thresholds, plus representative balances and two exceptional balances. |
-| Student status | `true`, `false` | Both client types. |
-| Day of week | `Calendar.MONDAY` (2), `Calendar.SATURDAY` (7) | One representative weekday and one representative weekend day. |
-
-The Cartesian product generates **7 × 10 × 2 × 2 = 280 test cases**. Each combination is a separate JUnit dynamic test. Expected values are computed independently from the written fee specification, not from the implementation being tested. JUnit compares fees with an absolute tolerance of `0.0001`. The code reports each test as PASS or FAIL.
-
-**Assumptions and limitations:**
-
-- Account balance is the balance supplied to the fee calculator at the time the fee is calculated.
-- Amounts and fees are in dollars. For example, 0.1% is multiplied as `0.001`.
-- The fee specification gives no separate amount threshold, maximum amount, rounding rule, or exception behavior for this calculator method. The seven amount values therefore provide representative combination coverage rather than mathematically complete robust boundary selection for the amount input.
-- A negative balance (−$1) and zero balance are included as exploratory inputs. The fee specification itself does not establish whether a negative balance is valid or whether an exception is required. These tests apply the stated `< $1,000` fee rule; they do not demonstrate valid handling of negative balances.
-- Some withdrawal amounts exceed the supplied account balance. These tests examine only the fee-calculation method, not the ATM session's ability to authorize or dispense the withdrawal.
-- Only Monday and Saturday are tested. The results demonstrate weekday/weekend behavior for those representatives, but not every day of the week.
-- The suite is **combination-based and boundary-focused**, but should not be described as a formally exhaustive robust worst-case suite for every input domain without additional input-domain specifications.
+The full Cartesian product is **5 × 10 × 2 × 9 = 900 test cases**. All-valid combinations check the written fee rules; every combination containing an invalid input checks the explicit rejection assumption. Cases have stable IDs W001–W900 in the test output and result table.
 
 ### 2.2 Test Cases and Results
 
-Each row records one executed JUnit test. `Day` is shown as Monday (2) or Saturday (7). Expected and actual fees are in dollars; `PASS` means the absolute difference is at most `0.0001`.
-
-| Test ID | Amount | Balance | Student? | Day | Expected fee | Actual fee | Result |
-|---|---:|---:|:---:|---|---:|---:|:---:|
-| W001 | 20.00 | -1.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W002 | 20.00 | -1.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W003 | 20.00 | -1.00 | No | Mon | 0.0600 | 0.0400 | FAIL |
-| W004 | 20.00 | -1.00 | No | Sat | 0.0600 | 0.0400 | FAIL |
-| W005 | 20.00 | 0.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W006 | 20.00 | 0.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W007 | 20.00 | 0.00 | No | Mon | 0.0600 | 0.0400 | FAIL |
-| W008 | 20.00 | 0.00 | No | Sat | 0.0600 | 0.0400 | FAIL |
-| W009 | 20.00 | 500.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W010 | 20.00 | 500.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W011 | 20.00 | 500.00 | No | Mon | 0.0600 | 0.0400 | FAIL |
-| W012 | 20.00 | 500.00 | No | Sat | 0.0600 | 0.0400 | FAIL |
-| W013 | 20.00 | 999.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W014 | 20.00 | 999.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W015 | 20.00 | 999.00 | No | Mon | 0.0600 | 0.0400 | FAIL |
-| W016 | 20.00 | 999.00 | No | Sat | 0.0600 | 0.0400 | FAIL |
-| W017 | 20.00 | 1000.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W018 | 20.00 | 1000.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W019 | 20.00 | 1000.00 | No | Mon | 0.0200 | 0.0200 | PASS |
-| W020 | 20.00 | 1000.00 | No | Sat | 0.0200 | 0.0200 | PASS |
-| W021 | 20.00 | 1001.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W022 | 20.00 | 1001.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W023 | 20.00 | 1001.00 | No | Mon | 0.0200 | 0.0200 | PASS |
-| W024 | 20.00 | 1001.00 | No | Sat | 0.0200 | 0.0200 | PASS |
-| W025 | 20.00 | 3000.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W026 | 20.00 | 3000.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W027 | 20.00 | 3000.00 | No | Mon | 0.0200 | 0.0200 | PASS |
-| W028 | 20.00 | 3000.00 | No | Sat | 0.0200 | 0.0200 | PASS |
-| W029 | 20.00 | 4999.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W030 | 20.00 | 4999.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W031 | 20.00 | 4999.00 | No | Mon | 0.0200 | 0.0200 | PASS |
-| W032 | 20.00 | 4999.00 | No | Sat | 0.0200 | 0.0200 | PASS |
-| W033 | 20.00 | 5000.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W034 | 20.00 | 5000.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W035 | 20.00 | 5000.00 | No | Mon | 0.0000 | 0.0200 | FAIL |
-| W036 | 20.00 | 5000.00 | No | Sat | 0.0000 | 0.0200 | FAIL |
-| W037 | 20.00 | 5001.00 | Yes | Mon | 0.0000 | 0.0200 | FAIL |
-| W038 | 20.00 | 5001.00 | Yes | Sat | 0.0200 | 0.0000 | FAIL |
-| W039 | 20.00 | 5001.00 | No | Mon | 0.0000 | 0.0200 | FAIL |
-| W040 | 20.00 | 5001.00 | No | Sat | 0.0000 | 0.0200 | FAIL |
-| W041 | 50.00 | -1.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W042 | 50.00 | -1.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W043 | 50.00 | -1.00 | No | Mon | 0.1500 | 0.1000 | FAIL |
-| W044 | 50.00 | -1.00 | No | Sat | 0.1500 | 0.1000 | FAIL |
-| W045 | 50.00 | 0.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W046 | 50.00 | 0.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W047 | 50.00 | 0.00 | No | Mon | 0.1500 | 0.1000 | FAIL |
-| W048 | 50.00 | 0.00 | No | Sat | 0.1500 | 0.1000 | FAIL |
-| W049 | 50.00 | 500.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W050 | 50.00 | 500.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W051 | 50.00 | 500.00 | No | Mon | 0.1500 | 0.1000 | FAIL |
-| W052 | 50.00 | 500.00 | No | Sat | 0.1500 | 0.1000 | FAIL |
-| W053 | 50.00 | 999.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W054 | 50.00 | 999.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W055 | 50.00 | 999.00 | No | Mon | 0.1500 | 0.1000 | FAIL |
-| W056 | 50.00 | 999.00 | No | Sat | 0.1500 | 0.1000 | FAIL |
-| W057 | 50.00 | 1000.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W058 | 50.00 | 1000.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W059 | 50.00 | 1000.00 | No | Mon | 0.0500 | 0.0500 | PASS |
-| W060 | 50.00 | 1000.00 | No | Sat | 0.0500 | 0.0500 | PASS |
-| W061 | 50.00 | 1001.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W062 | 50.00 | 1001.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W063 | 50.00 | 1001.00 | No | Mon | 0.0500 | 0.0500 | PASS |
-| W064 | 50.00 | 1001.00 | No | Sat | 0.0500 | 0.0500 | PASS |
-| W065 | 50.00 | 3000.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W066 | 50.00 | 3000.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W067 | 50.00 | 3000.00 | No | Mon | 0.0500 | 0.0500 | PASS |
-| W068 | 50.00 | 3000.00 | No | Sat | 0.0500 | 0.0500 | PASS |
-| W069 | 50.00 | 4999.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W070 | 50.00 | 4999.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W071 | 50.00 | 4999.00 | No | Mon | 0.0500 | 0.0500 | PASS |
-| W072 | 50.00 | 4999.00 | No | Sat | 0.0500 | 0.0500 | PASS |
-| W073 | 50.00 | 5000.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W074 | 50.00 | 5000.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W075 | 50.00 | 5000.00 | No | Mon | 0.0000 | 0.0500 | FAIL |
-| W076 | 50.00 | 5000.00 | No | Sat | 0.0000 | 0.0500 | FAIL |
-| W077 | 50.00 | 5001.00 | Yes | Mon | 0.0000 | 0.0500 | FAIL |
-| W078 | 50.00 | 5001.00 | Yes | Sat | 0.0500 | 0.0000 | FAIL |
-| W079 | 50.00 | 5001.00 | No | Mon | 0.0000 | 0.0500 | FAIL |
-| W080 | 50.00 | 5001.00 | No | Sat | 0.0000 | 0.0500 | FAIL |
-| W081 | 100.00 | -1.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W082 | 100.00 | -1.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W083 | 100.00 | -1.00 | No | Mon | 0.3000 | 0.2000 | FAIL |
-| W084 | 100.00 | -1.00 | No | Sat | 0.3000 | 0.2000 | FAIL |
-| W085 | 100.00 | 0.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W086 | 100.00 | 0.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W087 | 100.00 | 0.00 | No | Mon | 0.3000 | 0.2000 | FAIL |
-| W088 | 100.00 | 0.00 | No | Sat | 0.3000 | 0.2000 | FAIL |
-| W089 | 100.00 | 500.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W090 | 100.00 | 500.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W091 | 100.00 | 500.00 | No | Mon | 0.3000 | 0.2000 | FAIL |
-| W092 | 100.00 | 500.00 | No | Sat | 0.3000 | 0.2000 | FAIL |
-| W093 | 100.00 | 999.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W094 | 100.00 | 999.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W095 | 100.00 | 999.00 | No | Mon | 0.3000 | 0.2000 | FAIL |
-| W096 | 100.00 | 999.00 | No | Sat | 0.3000 | 0.2000 | FAIL |
-| W097 | 100.00 | 1000.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W098 | 100.00 | 1000.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W099 | 100.00 | 1000.00 | No | Mon | 0.1000 | 0.1000 | PASS |
-| W100 | 100.00 | 1000.00 | No | Sat | 0.1000 | 0.1000 | PASS |
-| W101 | 100.00 | 1001.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W102 | 100.00 | 1001.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W103 | 100.00 | 1001.00 | No | Mon | 0.1000 | 0.1000 | PASS |
-| W104 | 100.00 | 1001.00 | No | Sat | 0.1000 | 0.1000 | PASS |
-| W105 | 100.00 | 3000.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W106 | 100.00 | 3000.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W107 | 100.00 | 3000.00 | No | Mon | 0.1000 | 0.1000 | PASS |
-| W108 | 100.00 | 3000.00 | No | Sat | 0.1000 | 0.1000 | PASS |
-| W109 | 100.00 | 4999.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W110 | 100.00 | 4999.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W111 | 100.00 | 4999.00 | No | Mon | 0.1000 | 0.1000 | PASS |
-| W112 | 100.00 | 4999.00 | No | Sat | 0.1000 | 0.1000 | PASS |
-| W113 | 100.00 | 5000.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W114 | 100.00 | 5000.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W115 | 100.00 | 5000.00 | No | Mon | 0.0000 | 0.1000 | FAIL |
-| W116 | 100.00 | 5000.00 | No | Sat | 0.0000 | 0.1000 | FAIL |
-| W117 | 100.00 | 5001.00 | Yes | Mon | 0.0000 | 0.1000 | FAIL |
-| W118 | 100.00 | 5001.00 | Yes | Sat | 0.1000 | 0.0000 | FAIL |
-| W119 | 100.00 | 5001.00 | No | Mon | 0.0000 | 0.1000 | FAIL |
-| W120 | 100.00 | 5001.00 | No | Sat | 0.0000 | 0.1000 | FAIL |
-| W121 | 200.00 | -1.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W122 | 200.00 | -1.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W123 | 200.00 | -1.00 | No | Mon | 0.6000 | 0.4000 | FAIL |
-| W124 | 200.00 | -1.00 | No | Sat | 0.6000 | 0.4000 | FAIL |
-| W125 | 200.00 | 0.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W126 | 200.00 | 0.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W127 | 200.00 | 0.00 | No | Mon | 0.6000 | 0.4000 | FAIL |
-| W128 | 200.00 | 0.00 | No | Sat | 0.6000 | 0.4000 | FAIL |
-| W129 | 200.00 | 500.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W130 | 200.00 | 500.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W131 | 200.00 | 500.00 | No | Mon | 0.6000 | 0.4000 | FAIL |
-| W132 | 200.00 | 500.00 | No | Sat | 0.6000 | 0.4000 | FAIL |
-| W133 | 200.00 | 999.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W134 | 200.00 | 999.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W135 | 200.00 | 999.00 | No | Mon | 0.6000 | 0.4000 | FAIL |
-| W136 | 200.00 | 999.00 | No | Sat | 0.6000 | 0.4000 | FAIL |
-| W137 | 200.00 | 1000.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W138 | 200.00 | 1000.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W139 | 200.00 | 1000.00 | No | Mon | 0.2000 | 0.2000 | PASS |
-| W140 | 200.00 | 1000.00 | No | Sat | 0.2000 | 0.2000 | PASS |
-| W141 | 200.00 | 1001.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W142 | 200.00 | 1001.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W143 | 200.00 | 1001.00 | No | Mon | 0.2000 | 0.2000 | PASS |
-| W144 | 200.00 | 1001.00 | No | Sat | 0.2000 | 0.2000 | PASS |
-| W145 | 200.00 | 3000.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W146 | 200.00 | 3000.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W147 | 200.00 | 3000.00 | No | Mon | 0.2000 | 0.2000 | PASS |
-| W148 | 200.00 | 3000.00 | No | Sat | 0.2000 | 0.2000 | PASS |
-| W149 | 200.00 | 4999.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W150 | 200.00 | 4999.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W151 | 200.00 | 4999.00 | No | Mon | 0.2000 | 0.2000 | PASS |
-| W152 | 200.00 | 4999.00 | No | Sat | 0.2000 | 0.2000 | PASS |
-| W153 | 200.00 | 5000.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W154 | 200.00 | 5000.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W155 | 200.00 | 5000.00 | No | Mon | 0.0000 | 0.2000 | FAIL |
-| W156 | 200.00 | 5000.00 | No | Sat | 0.0000 | 0.2000 | FAIL |
-| W157 | 200.00 | 5001.00 | Yes | Mon | 0.0000 | 0.2000 | FAIL |
-| W158 | 200.00 | 5001.00 | Yes | Sat | 0.2000 | 0.0000 | FAIL |
-| W159 | 200.00 | 5001.00 | No | Mon | 0.0000 | 0.2000 | FAIL |
-| W160 | 200.00 | 5001.00 | No | Sat | 0.0000 | 0.2000 | FAIL |
-| W161 | 500.00 | -1.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W162 | 500.00 | -1.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W163 | 500.00 | -1.00 | No | Mon | 1.5000 | 1.0000 | FAIL |
-| W164 | 500.00 | -1.00 | No | Sat | 1.5000 | 1.0000 | FAIL |
-| W165 | 500.00 | 0.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W166 | 500.00 | 0.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W167 | 500.00 | 0.00 | No | Mon | 1.5000 | 1.0000 | FAIL |
-| W168 | 500.00 | 0.00 | No | Sat | 1.5000 | 1.0000 | FAIL |
-| W169 | 500.00 | 500.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W170 | 500.00 | 500.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W171 | 500.00 | 500.00 | No | Mon | 1.5000 | 1.0000 | FAIL |
-| W172 | 500.00 | 500.00 | No | Sat | 1.5000 | 1.0000 | FAIL |
-| W173 | 500.00 | 999.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W174 | 500.00 | 999.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W175 | 500.00 | 999.00 | No | Mon | 1.5000 | 1.0000 | FAIL |
-| W176 | 500.00 | 999.00 | No | Sat | 1.5000 | 1.0000 | FAIL |
-| W177 | 500.00 | 1000.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W178 | 500.00 | 1000.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W179 | 500.00 | 1000.00 | No | Mon | 0.5000 | 0.5000 | PASS |
-| W180 | 500.00 | 1000.00 | No | Sat | 0.5000 | 0.5000 | PASS |
-| W181 | 500.00 | 1001.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W182 | 500.00 | 1001.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W183 | 500.00 | 1001.00 | No | Mon | 0.5000 | 0.5000 | PASS |
-| W184 | 500.00 | 1001.00 | No | Sat | 0.5000 | 0.5000 | PASS |
-| W185 | 500.00 | 3000.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W186 | 500.00 | 3000.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W187 | 500.00 | 3000.00 | No | Mon | 0.5000 | 0.5000 | PASS |
-| W188 | 500.00 | 3000.00 | No | Sat | 0.5000 | 0.5000 | PASS |
-| W189 | 500.00 | 4999.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W190 | 500.00 | 4999.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W191 | 500.00 | 4999.00 | No | Mon | 0.5000 | 0.5000 | PASS |
-| W192 | 500.00 | 4999.00 | No | Sat | 0.5000 | 0.5000 | PASS |
-| W193 | 500.00 | 5000.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W194 | 500.00 | 5000.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W195 | 500.00 | 5000.00 | No | Mon | 0.0000 | 0.5000 | FAIL |
-| W196 | 500.00 | 5000.00 | No | Sat | 0.0000 | 0.5000 | FAIL |
-| W197 | 500.00 | 5001.00 | Yes | Mon | 0.0000 | 0.5000 | FAIL |
-| W198 | 500.00 | 5001.00 | Yes | Sat | 0.5000 | 0.0000 | FAIL |
-| W199 | 500.00 | 5001.00 | No | Mon | 0.0000 | 0.5000 | FAIL |
-| W200 | 500.00 | 5001.00 | No | Sat | 0.0000 | 0.5000 | FAIL |
-| W201 | 999.00 | -1.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W202 | 999.00 | -1.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W203 | 999.00 | -1.00 | No | Mon | 2.9970 | 1.9980 | FAIL |
-| W204 | 999.00 | -1.00 | No | Sat | 2.9970 | 1.9980 | FAIL |
-| W205 | 999.00 | 0.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W206 | 999.00 | 0.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W207 | 999.00 | 0.00 | No | Mon | 2.9970 | 1.9980 | FAIL |
-| W208 | 999.00 | 0.00 | No | Sat | 2.9970 | 1.9980 | FAIL |
-| W209 | 999.00 | 500.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W210 | 999.00 | 500.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W211 | 999.00 | 500.00 | No | Mon | 2.9970 | 1.9980 | FAIL |
-| W212 | 999.00 | 500.00 | No | Sat | 2.9970 | 1.9980 | FAIL |
-| W213 | 999.00 | 999.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W214 | 999.00 | 999.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W215 | 999.00 | 999.00 | No | Mon | 2.9970 | 1.9980 | FAIL |
-| W216 | 999.00 | 999.00 | No | Sat | 2.9970 | 1.9980 | FAIL |
-| W217 | 999.00 | 1000.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W218 | 999.00 | 1000.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W219 | 999.00 | 1000.00 | No | Mon | 0.9990 | 0.9990 | PASS |
-| W220 | 999.00 | 1000.00 | No | Sat | 0.9990 | 0.9990 | PASS |
-| W221 | 999.00 | 1001.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W222 | 999.00 | 1001.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W223 | 999.00 | 1001.00 | No | Mon | 0.9990 | 0.9990 | PASS |
-| W224 | 999.00 | 1001.00 | No | Sat | 0.9990 | 0.9990 | PASS |
-| W225 | 999.00 | 3000.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W226 | 999.00 | 3000.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W227 | 999.00 | 3000.00 | No | Mon | 0.9990 | 0.9990 | PASS |
-| W228 | 999.00 | 3000.00 | No | Sat | 0.9990 | 0.9990 | PASS |
-| W229 | 999.00 | 4999.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W230 | 999.00 | 4999.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W231 | 999.00 | 4999.00 | No | Mon | 0.9990 | 0.9990 | PASS |
-| W232 | 999.00 | 4999.00 | No | Sat | 0.9990 | 0.9990 | PASS |
-| W233 | 999.00 | 5000.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W234 | 999.00 | 5000.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W235 | 999.00 | 5000.00 | No | Mon | 0.0000 | 0.9990 | FAIL |
-| W236 | 999.00 | 5000.00 | No | Sat | 0.0000 | 0.9990 | FAIL |
-| W237 | 999.00 | 5001.00 | Yes | Mon | 0.0000 | 0.9990 | FAIL |
-| W238 | 999.00 | 5001.00 | Yes | Sat | 0.9990 | 0.0000 | FAIL |
-| W239 | 999.00 | 5001.00 | No | Mon | 0.0000 | 0.9990 | FAIL |
-| W240 | 999.00 | 5001.00 | No | Sat | 0.0000 | 0.9990 | FAIL |
-| W241 | 1000.00 | -1.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W242 | 1000.00 | -1.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W243 | 1000.00 | -1.00 | No | Mon | 3.0000 | 2.0000 | FAIL |
-| W244 | 1000.00 | -1.00 | No | Sat | 3.0000 | 2.0000 | FAIL |
-| W245 | 1000.00 | 0.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W246 | 1000.00 | 0.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W247 | 1000.00 | 0.00 | No | Mon | 3.0000 | 2.0000 | FAIL |
-| W248 | 1000.00 | 0.00 | No | Sat | 3.0000 | 2.0000 | FAIL |
-| W249 | 1000.00 | 500.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W250 | 1000.00 | 500.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W251 | 1000.00 | 500.00 | No | Mon | 3.0000 | 2.0000 | FAIL |
-| W252 | 1000.00 | 500.00 | No | Sat | 3.0000 | 2.0000 | FAIL |
-| W253 | 1000.00 | 999.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W254 | 1000.00 | 999.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W255 | 1000.00 | 999.00 | No | Mon | 3.0000 | 2.0000 | FAIL |
-| W256 | 1000.00 | 999.00 | No | Sat | 3.0000 | 2.0000 | FAIL |
-| W257 | 1000.00 | 1000.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W258 | 1000.00 | 1000.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W259 | 1000.00 | 1000.00 | No | Mon | 1.0000 | 1.0000 | PASS |
-| W260 | 1000.00 | 1000.00 | No | Sat | 1.0000 | 1.0000 | PASS |
-| W261 | 1000.00 | 1001.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W262 | 1000.00 | 1001.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W263 | 1000.00 | 1001.00 | No | Mon | 1.0000 | 1.0000 | PASS |
-| W264 | 1000.00 | 1001.00 | No | Sat | 1.0000 | 1.0000 | PASS |
-| W265 | 1000.00 | 3000.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W266 | 1000.00 | 3000.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W267 | 1000.00 | 3000.00 | No | Mon | 1.0000 | 1.0000 | PASS |
-| W268 | 1000.00 | 3000.00 | No | Sat | 1.0000 | 1.0000 | PASS |
-| W269 | 1000.00 | 4999.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W270 | 1000.00 | 4999.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W271 | 1000.00 | 4999.00 | No | Mon | 1.0000 | 1.0000 | PASS |
-| W272 | 1000.00 | 4999.00 | No | Sat | 1.0000 | 1.0000 | PASS |
-| W273 | 1000.00 | 5000.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W274 | 1000.00 | 5000.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W275 | 1000.00 | 5000.00 | No | Mon | 0.0000 | 1.0000 | FAIL |
-| W276 | 1000.00 | 5000.00 | No | Sat | 0.0000 | 1.0000 | FAIL |
-| W277 | 1000.00 | 5001.00 | Yes | Mon | 0.0000 | 1.0000 | FAIL |
-| W278 | 1000.00 | 5001.00 | Yes | Sat | 1.0000 | 0.0000 | FAIL |
-| W279 | 1000.00 | 5001.00 | No | Mon | 0.0000 | 1.0000 | FAIL |
-| W280 | 1000.00 | 5001.00 | No | Sat | 0.0000 | 1.0000 | FAIL |
+The complete table of inputs, expected/actual outcomes, pass/fail results, and fault groups is in [withdrawal-results.md](withdrawal-results.md). It is split into a separate Markdown file to keep this report readable. Results were captured from JUnit on Java 11 on November 7, 2026.
 
 ### 2.3 Test Results Summary
 
-| Result | Number of tests |
-|---|---:|
-| Total tests | 280 |
-| Passed | 56 |
-| Failed | 224 |
-
-All **140 student tests failed**: on the tested weekday the method charged 0.1% rather than 0%, and on the tested weekend it charged 0% rather than 0.1%. Among the **140 non-student tests**, 56 passed (balances from $1,000 up to but excluding $5,000) and 84 failed (balances below $1,000 or at least $5,000).
-
-| Test group | Tests | Passed | Failed |
+| Group | Tests | Passed | Failed |
 |---|---:|---:|---:|
-| Students, Monday | 70 | 0 | 70 |
-| Students, Saturday | 70 | 0 | 70 |
-| Non-students, balance < $1,000 | 56 | 0 | 56 |
-| Non-students, $1,000 ≤ balance < $5,000 | 56 | 56 | 0 |
-| Non-students, balance ≥ $5,000 | 28 | 0 | 28 |
-| **Total** | **280** | **56** | **224** |
+| All-valid inputs: student | 189 | 0 | 189 |
+| All-valid inputs: non-student balance < $1,000 | 63 | 0 | 63 |
+| All-valid inputs: non-student $1,000 <= balance < $5,000 | 84 | 84 | 0 |
+| All-valid inputs: non-student balance >= $5,000 | 42 | 0 | 42 |
+| Invalid-input combinations (assumption-based oracle) | 522 | 0 | 522 |
+| **Total** | **900** | **84** | **816** |
+
+There are **294 failed checks of specified fee rules**, plus **522 failures of the separately stated invalid-input assumption**. They should not be conflated. All 900 cases executed without test errors or skips.
 
 ### 2.4 Fault Localization
 
-The table groups cases that exhibit the same incorrect behavior. These are suspected faults within `bank.utils.FeesCalculator.calculateWithdrawalFee()`, inferred from the output.
-
-| Fault ID | Affected test cases | Suspected problem | Evidence |
-|---|---|---|---|
-| WF-01 | All student Monday and Saturday cases (140 tests) | Weekday/weekend fee logic appears reversed for student clients. | W001: $20 on Monday expected $0.0000, actual $0.0200; W002: $20 on Saturday expected $0.0200, actual $0.0000. The same pattern occurs at every tested balance and amount. |
-| WF-02 | Non-students with balance < $1,000 | Incorrect low-balance fee rate, apparently 0.2% instead of 0.3%. | W003: amount $20 and balance −$1 expected $0.0600, actual $0.0400; W011: amount $20 and balance $500 shows the same 0.2%-rather-than-0.3% pattern. |
-| WF-03 | Non-students with balance ≥ $5,000 | High-balance fee exemption is not applied; the implementation apparently charges 0.1% instead of 0%. | W035: amount $20 and balance $5,000 expected $0.0000, actual $0.0200; W039: balance $5,001 has the same discrepancy. |
-
-**Fault counts:** WF-01 accounts for 140 failed student cases (70 weekday plus 70 weekend); WF-02 for 56 failed low-balance non-student cases; and WF-03 for 28 failed high-balance non-student cases. Together these explain 224 observed failures. Cases with a non-student balance from $1,000 through $4,999 passed.
-
-**Conclusion:** The test suite shows repeated differences between the specified and implemented withdrawal fee rules. The failures indicate an apparent student-day reversal and incorrect non-student handling below $1,000 and at or above $5,000.
+| Fault ID | Affected failing cases | Suspected fault and justification |
+|---|---|---|
+| WF-01 | All-valid student cases | `FeesCalculator.calculateWithdrawalFee`, weekend branch: the weekend rate is 0 and weekday rate 0.001, reversing the specified rates. |
+| WF-02 | All-valid non-student cases with balance < $1,000 | `FeesCalculator.calculateWithdrawalFee`, `accountBalance < 1000.00` assignment: 0.002 is used instead of 0.003. |
+| WF-03 | All-valid non-student cases with balance >= $5,000 | `FeesCalculator.calculateWithdrawalFee`, `accountBalance < 10000.00`: the no-fee tier starts at $10,000 instead of $5,000. |
+| WF-04 (assumption-based) | Every combination containing an invalid input | `FeesCalculator.calculateWithdrawalFee`, method entry: no validation raises the assumed `IllegalArgumentException`; a numerical fee is returned. This is not an exception contract specified in the handout. |
 
 ## 3. Deposit
 
@@ -461,7 +151,7 @@ The table groups cases that exhibit the same incorrect behavior. These are suspe
 
 **Analysis technique:** Weak Robust Equivalence Class Analysis
 
-For my process to calculate the test cases, I split the possible valid and invalid inputs into groups, Invalid, Students, and Non-students, and then within student and non-student I split them into amount and balance groups, creating the list below. Then I created a table for the test cases with columns TestID, Groups Covered, Student?, Amount deposited, Account balance, and Expected fee. In the groups covered column I made sure each group appeared at least once to meet the weak requirements. Each invalid group was tested in its own test case with only one invalid input while the rest are valid to meet the robust requirements. And then I filled in the rest of the table based on the groups that each row covered, choosing values around the midpoint of its range. The assumptions I made were that an invalid input should throw an exception, a $0 balance is valid, and that there is no upper limit on the amount deposited and the account balance. 
+For my process to calculate the test cases, I split the possible valid and invalid inputs into groups, Invalid, Students, and Non-students, and then within student and non-student I split them into amount and balance groups, creating the list below. Then I created a table for the test cases with columns TestID, Groups Covered, Student?, Amount deposited, Account balance, and Expected fee. In the groups covered column I made sure each group appeared at least once to meet the weak requirements. Each invalid group was tested in its own test case with only one invalid input while the rest are valid to meet the robust requirements. And then I filled in the rest of the table based on the groups that each row covered, choosing values around the midpoint of its range. The assumptions I made were that an invalid input should throw an exception, a $0 balance is valid, and that there is no upper limit on the amount deposited and the account balance.
 
 #### Weak Robust Equivalence Class Analysis Groups:
 
@@ -500,7 +190,9 @@ For my process to calculate the test cases, I split the possible valid and inval
 | 6 | 2ai, 2biii | yes | $25 | $10,000 | $0.125 |
 | 7 | 3ai, 3bi | no | $130 | $1500 | $0.13 |
 | 8 | 3aii, 3bii | no | $500 | $5000 | $4.00 |
-| 9 | 3ai, 3biii | no | $150 | $50,000 | $0.00 | 
+| 9 | 3ai, 3biii | no | $150 | $50,000 | $0.00 |
+| 10 | 2aii, 2bi | yes | $100 | $250 | $0.25 |
+| 11 | 3aii, 3bi | no | $500 | $1500 | $2.00 |
 
 ### 3.3 Test Results:
 
@@ -515,8 +207,10 @@ For my process to calculate the test cases, I split the possible valid and inval
 | 7 | Fail |
 | 8 | Fail |
 | 9 | Fail |
+| 10 | Fail |
+| 11 | Fail |
 
-### 3.4 Fault Localization: 
+### 3.4 Fault Localization:
 
 | Failing Test | Suspected Fault (file, method, line) | One-line justification |
 |---|---|---|
@@ -526,6 +220,8 @@ For my process to calculate the test cases, I split the possible valid and inval
 | DepositTest 7 | FeesCalculator.java, calculateDepositInterest, line 64 (interestPercentage = 0.0) | interestPercentage should be 0.1% but line 64 charges 0% |
 | DepositTest 8 | FeesCalculator.java, calculateDepositInterest, line 54 (amount > 500.00) | Condition should be > $250, not > $500 |
 | DepositTest 9 | FeesCalculator.java, calculateDepositInterest, line 62 (interestPercentage = 0.005) | interestPercentage should be 0%, not 0.5% |
+| DepositTest 10 | `FeesCalculator.calculateDepositInterest`, student `amount > 100.00` branch | A $100 deposit with $250 balance returns $0.20 instead of the specified $0.25. |
+| DepositTest 11 | `FeesCalculator.calculateDepositInterest`, non-student `amount > 500.00` branch | A $500 deposit with $1500 balance returns $0 instead of the specified $2. |
 
 
 ## 4. Transfer

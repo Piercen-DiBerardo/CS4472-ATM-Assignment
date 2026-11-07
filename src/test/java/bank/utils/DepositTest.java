@@ -2,8 +2,6 @@ package bank.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -30,7 +28,9 @@ public class DepositTest {
         "6, true, 25, 10000, 0.125",
         "7, false, 130, 1500, 0.13",
         "8, false, 500, 5000, 4",
-        "9, false, 150, 50000, 0.0"
+        "9, false, 150, 50000, 0.0",
+        "10, true, 100, 250, 0.25",
+        "11, false, 500, 1500, 2.0"
     })
     void depositTestValid(String id, boolean student, double amount, double balance, double expectedFee) {
         assertEquals(expectedFee, calculator.calculateDepositInterest(amount, balance, student), 0.0001);

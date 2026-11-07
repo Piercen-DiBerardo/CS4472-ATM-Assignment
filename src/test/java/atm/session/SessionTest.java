@@ -1,6 +1,7 @@
 package atm.session;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.Stream;
@@ -17,6 +18,7 @@ import atm.dispatcher.MessageDispatcher;
 import atm.exceptions.InvalidAmountException;
 import atm.exceptions.InvalidPinFormatException;
 import atm.session.transactions.ATMWithdrawal;
+import atm.session.transactions.ATMTransaction;
 import atm.ui.panels.MainPanel;
 import atm.utils.CredentialsCheck;
 import atm.utils.FormatChecker;
@@ -32,17 +34,22 @@ class SessionTest {
 
     private static final String CARD = "4000000000000000";
 
+    private WithdrawalAccount account;
     private ATM atm;
     private MessageDispatcher dispatcher;
 
     @BeforeEach
     void setUp() throws Exception {
+        account = new WithdrawalAccount(5000.0, 1000.0);
         dispatcher = Mockito.mock(MessageDispatcher.class);
         Mockito.when(dispatcher.checkCredentials(
                 ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(true);
         Mockito.when(dispatcher.performTransaction(
                 ArgumentMatchers.any(), ArgumentMatchers.any(), ArgumentMatchers.any()))
-                .thenReturn(new TransactionResult(true, "", 0.0, new double[] {5000.0}));
+                .thenAnswer(invocation -> {
+                    ATMTransaction transaction = invocation.getArgument(2);
+                    return account.withdraw(transaction.getAmount());
+                });
 
         atm = new ATM(new FormatChecker(), new CredentialsCheck(dispatcher), dispatcher);
         atm.setMainPanel(Mockito.mock(MainPanel.class));
@@ -135,8 +142,35 @@ class SessionTest {
 
         if (valid) {
             assertDoesNotThrow(() -> session.setAmount(amount));
+            assertEquals(5000.0 - amount, account.balance, 0.0001,
+                    "The configured test account must fund the withdrawal");
         } else {
             assertThrows(InvalidAmountException.class, () -> session.setAmount(amount));
         }
     }
+
+    /** Test bank account; production Session is still responsible for its exception contract. */
+    private static final class WithdrawalAccount {
+        private double balance;
+        private final double dailyLimit;
+        private double withdrawnToday;
+
+        WithdrawalAccount(double balance, double dailyLimit) {
+            this.balance = balance;
+            this.dailyLimit = dailyLimit;
+        }
+
+        TransactionResult withdraw(double amount) {
+            boolean allowed = amount > 0 && amount <= balance
+                    && amount <= dailyLimit - withdrawnToday;
+            if (allowed) {
+                balance -= amount;
+                withdrawnToday += amount;
+            }
+            return new TransactionResult(allowed,
+                    allowed ? "" : "Account balance or daily limit exceeded",
+                    0.0, new double[] {balance});
+        }
+    }
+
 }

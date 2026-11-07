@@ -1,0 +1,984 @@
+suite,junit_case,result,failure_message
+atm.ATMTest,checkCorrectPINTest,PASS,
+atm.ATMTest,checkIncorrectPINTest,PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[1]",FAIL,Unexpected exception thrown: atm.exceptions.InvalidPinFormatException
+atm.session.SessionTest,"pinFormat(String, String, boolean)[2]",FAIL,Unexpected exception thrown: atm.exceptions.InvalidPinFormatException
+atm.session.SessionTest,"pinFormat(String, String, boolean)[3]",FAIL,Unexpected exception thrown: atm.exceptions.InvalidPinFormatException
+atm.session.SessionTest,"pinFormat(String, String, boolean)[4]",FAIL,Unexpected exception thrown: atm.exceptions.InvalidPinFormatException
+atm.session.SessionTest,"pinFormat(String, String, boolean)[5]",FAIL,Unexpected exception thrown: atm.exceptions.InvalidPinFormatException
+atm.session.SessionTest,"pinFormat(String, String, boolean)[6]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[7]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[8]",FAIL,"Expected atm.exceptions.InvalidPinFormatException to be thrown, but nothing was thrown."
+atm.session.SessionTest,"pinFormat(String, String, boolean)[9]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[10]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[11]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[12]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[13]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[14]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[15]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[16]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[17]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[18]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[19]",PASS,
+atm.session.SessionTest,"pinFormat(String, String, boolean)[20]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[1]",FAIL,"Expected atm.exceptions.InvalidAmountException to be thrown, but nothing was thrown."
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[2]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[3]",FAIL,"Expected atm.exceptions.InvalidAmountException to be thrown, but nothing was thrown."
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[4]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[5]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[6]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[7]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[8]",FAIL,Unexpected exception thrown: atm.exceptions.InvalidAmountException
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[9]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[10]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[11]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[12]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[13]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[14]",FAIL,"Expected atm.exceptions.InvalidAmountException to be thrown, but nothing was thrown."
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[15]",FAIL,"Expected atm.exceptions.InvalidAmountException to be thrown, but nothing was thrown."
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[16]",PASS,
+atm.session.SessionTest,"withdrawalAmount(String, int, boolean)[17]",PASS,
+bank.utils.DepositTest,"depositTestInvalid(String, boolean, double, double)[1]",FAIL,"Expected java.lang.Exception to be thrown, but nothing was thrown."
+bank.utils.DepositTest,"depositTestInvalid(String, boolean, double, double)[2]",FAIL,"Expected java.lang.Exception to be thrown, but nothing was thrown."
+bank.utils.DepositTest,"depositTestInvalid(String, boolean, double, double)[3]",FAIL,"Expected java.lang.Exception to be thrown, but nothing was thrown."
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[1]",FAIL,expected: <0.0> but was: <0.05>
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[2]",FAIL,expected: <0.5> but was: <0.2>
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[3]",PASS,
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[4]",FAIL,expected: <0.13> but was: <0.0>
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[5]",FAIL,expected: <4.0> but was: <0.0>
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[6]",FAIL,expected: <0.0> but was: <0.75>
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[7]",FAIL,expected: <0.25> but was: <0.2>
+bank.utils.DepositTest,"depositTestValid(String, boolean, double, double, double)[8]",FAIL,expected: <2.0> but was: <0.0>
+bank.utils.FeesCalculatorTest,withdrawalTest,PASS,
+bank.utils.FeesCalculatorTransferTest,studentExactly200,FAIL,expected: <0.1> but was: <1.0>
+bank.utils.FeesCalculatorTransferTest,nonStudentExactly4000FromBalance,FAIL,expected: <0.5> but was: <5.0>
+bank.utils.FeesCalculatorTransferTest,nonStudentBelow100MiddleBalance,FAIL,expected: <0.1> but was: <5.0>
+bank.utils.FeesCalculatorTransferTest,nonStudentExactly100,FAIL,expected: <0.2> but was: <1.0>
+bank.utils.FeesCalculatorTransferTest,studentBelow100Test1,FAIL,expected: <0.05> but was: <0.5>
+bank.utils.FeesCalculatorTransferTest,studentBelow100Test2,FAIL,expected: <0.025> but was: <0.25>
+bank.utils.FeesCalculatorTransferTest,studentBelow100Test3,FAIL,expected: <0.025> but was: <2.5>
+bank.utils.FeesCalculatorTransferTest,studentBelow100Test4,FAIL,expected: <0.0125> but was: <1.25>
+bank.utils.FeesCalculatorTransferTest,nonStudentExactly2000ToBalance,FAIL,expected: <0.05> but was: <0.5>
+bank.utils.FeesCalculatorTransferTest,nonStudentExactly2000FromBalance,FAIL,expected: <0.75> but was: <7.5>
+bank.utils.FeesCalculatorTransferTest,nonStudentExactly1000ToBalance,FAIL,expected: <0.15> but was: <0.75>
+bank.utils.FeesCalculatorTransferTest,nonStudentAbove100MiddleBalance,FAIL,expected: <0.3> but was: <7.5>
+bank.utils.FeesCalculatorTransferTest,studentTest1,FAIL,expected: <0.1> but was: <0.5>
+bank.utils.FeesCalculatorTransferTest,studentTest2,FAIL,expected: <0.05> but was: <0.25>
+bank.utils.FeesCalculatorTransferTest,studentTest3,FAIL,expected: <0.05> but was: <2.5>
+bank.utils.FeesCalculatorTransferTest,studentTest4,FAIL,expected: <0.025> but was: <1.25>
+bank.utils.FeesCalculatorTransferTest,studentTest5,FAIL,expected: <0.125> but was: <1.25>
+bank.utils.FeesCalculatorTransferTest,studentTest6,FAIL,expected: <0.0625> but was: <0.625>
+bank.utils.FeesCalculatorTransferTest,studentTest7,FAIL,expected: <0.625> but was: <6.25>
+bank.utils.FeesCalculatorTransferTest,studentTest8,FAIL,expected: <0.3125> but was: <3.125>
+bank.utils.FeesCalculatorTransferTest,studentBetween1000And2000FromBalance,FAIL,expected: <0.15> but was: <3.75>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest1,FAIL,expected: <0.1> but was: <1.0>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest2,FAIL,expected: <0.05> but was: <0.5>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest3,FAIL,expected: <0.5> but was: <5.0>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest4,FAIL,expected: <0.25> but was: <2.5>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest5,FAIL,expected: <0.3> but was: <1.5>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest6,FAIL,expected: <0.15> but was: <0.75>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest7,FAIL,expected: <0.75> but was: <7.5>
+bank.utils.FeesCalculatorTransferTest,nonStudentTest8,FAIL,expected: <0.375> but was: <8.25>
+bank.utils.FeesCalculatorTransferTest,studentExactly2000FromBalance,FAIL,expected: <0.05> but was: <2.5>
+bank.utils.FeesCalculatorTransferTest,studentExactly1000ToBalance,FAIL,expected: <0.05> but was: <0.25>
+bank.utils.FeesCalculatorTransferTest,studentBetween100And200,FAIL,expected: <0.15> but was: <0.75>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[1],FAIL,"W001 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[2],FAIL,"W002 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[3],FAIL,"W003 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[4],FAIL,"W004 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[5],FAIL,"W005 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[6],FAIL,"W006 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[7],FAIL,"W007 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[8],FAIL,"W008 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[9],FAIL,"W009 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[10],FAIL,"W010 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[11],FAIL,"W011 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[12],FAIL,"W012 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[13],FAIL,"W013 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[14],FAIL,"W014 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[15],FAIL,"W015 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[16],FAIL,"W016 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[17],FAIL,"W017 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[18],FAIL,"W018 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[19],FAIL,"W019 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[20],FAIL,"W020 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[21],FAIL,"W021 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[22],FAIL,"W022 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[23],FAIL,"W023 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[24],FAIL,"W024 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[25],FAIL,"W025 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[26],FAIL,"W026 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[27],FAIL,"W027 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[28],FAIL,"W028 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[29],FAIL,"W029 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[30],FAIL,"W030 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[31],FAIL,"W031 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[32],FAIL,"W032 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[33],FAIL,"W033 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[34],FAIL,"W034 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[35],FAIL,"W035 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[36],FAIL,"W036 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[37],FAIL,"W037 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[38],FAIL,"W038 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[39],FAIL,"W039 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[40],FAIL,"W040 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[41],FAIL,"W041 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[42],FAIL,"W042 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[43],FAIL,"W043 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[44],FAIL,"W044 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[45],FAIL,"W045 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[46],FAIL,"W046 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[47],FAIL,"W047 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[48],FAIL,"W048 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[49],FAIL,"W049 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[50],FAIL,"W050 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[51],FAIL,"W051 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[52],FAIL,"W052 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[53],FAIL,"W053 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[54],FAIL,"W054 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[55],FAIL,"W055 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[56],FAIL,"W056 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[57],FAIL,"W057 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[58],FAIL,"W058 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[59],FAIL,"W059 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[60],FAIL,"W060 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[61],FAIL,"W061 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[62],FAIL,"W062 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[63],FAIL,"W063 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[64],FAIL,"W064 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[65],FAIL,"W065 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[66],FAIL,"W066 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[67],FAIL,"W067 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[68],FAIL,"W068 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[69],FAIL,"W069 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[70],FAIL,"W070 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[71],FAIL,"W071 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[72],FAIL,"W072 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[73],FAIL,"W073 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[74],FAIL,"W074 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[75],FAIL,"W075 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[76],FAIL,"W076 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[77],FAIL,"W077 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[78],FAIL,"W078 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[79],FAIL,"W079 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[80],FAIL,"W080 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[81],FAIL,"W081 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[82],FAIL,"W082 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[83],FAIL,"W083 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[84],FAIL,"W084 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[85],FAIL,"W085 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[86],FAIL,"W086 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[87],FAIL,"W087 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[88],FAIL,"W088 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[89],FAIL,"W089 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[90],FAIL,"W090 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[91],FAIL,"W091 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[92],FAIL,"W092 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[93],FAIL,"W093 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[94],FAIL,"W094 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[95],FAIL,"W095 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[96],FAIL,"W096 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[97],FAIL,"W097 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[98],FAIL,"W098 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[99],FAIL,"W099 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[100],FAIL,"W100 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[101],FAIL,"W101 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[102],FAIL,"W102 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[103],FAIL,"W103 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[104],FAIL,"W104 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[105],FAIL,"W105 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[106],FAIL,"W106 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[107],FAIL,"W107 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[108],FAIL,"W108 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[109],FAIL,"W109 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[110],FAIL,"W110 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[111],FAIL,"W111 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[112],FAIL,"W112 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[113],FAIL,"W113 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[114],FAIL,"W114 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[115],FAIL,"W115 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[116],FAIL,"W116 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[117],FAIL,"W117 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[118],FAIL,"W118 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[119],FAIL,"W119 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[120],FAIL,"W120 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[121],FAIL,"W121 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[122],FAIL,"W122 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[123],FAIL,"W123 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[124],FAIL,"W124 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[125],FAIL,"W125 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[126],FAIL,"W126 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[127],FAIL,"W127 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[128],FAIL,"W128 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[129],FAIL,"W129 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[130],FAIL,"W130 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[131],FAIL,"W131 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[132],FAIL,"W132 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[133],FAIL,"W133 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[134],FAIL,"W134 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[135],FAIL,"W135 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[136],FAIL,"W136 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[137],FAIL,"W137 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[138],FAIL,"W138 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[139],FAIL,"W139 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[140],FAIL,"W140 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[141],FAIL,"W141 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[142],FAIL,"W142 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[143],FAIL,"W143 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[144],FAIL,"W144 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[145],FAIL,"W145 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[146],FAIL,"W146 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[147],FAIL,"W147 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[148],FAIL,"W148 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[149],FAIL,"W149 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[150],FAIL,"W150 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[151],FAIL,"W151 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[152],FAIL,"W152 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[153],FAIL,"W153 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[154],FAIL,"W154 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[155],FAIL,"W155 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[156],FAIL,"W156 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[157],FAIL,"W157 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[158],FAIL,"W158 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[159],FAIL,"W159 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[160],FAIL,"W160 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[161],FAIL,"W161 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[162],FAIL,"W162 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[163],FAIL,"W163 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[164],FAIL,"W164 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[165],FAIL,"W165 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[166],FAIL,"W166 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[167],FAIL,"W167 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[168],FAIL,"W168 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[169],FAIL,"W169 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[170],FAIL,"W170 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[171],FAIL,"W171 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[172],FAIL,"W172 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[173],FAIL,"W173 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[174],FAIL,"W174 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[175],FAIL,"W175 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[176],FAIL,"W176 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[177],FAIL,"W177 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[178],FAIL,"W178 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[179],FAIL,"W179 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[180],FAIL,"W180 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[181],FAIL,"W181 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[182],FAIL,"W182 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[183],FAIL,"W183 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[184],FAIL,"W184 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[185],FAIL,"W185 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[186],FAIL,"W186 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[187],FAIL,"W187 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[188],FAIL,"W188 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[189],FAIL,"W189 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[190],FAIL,"W190 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[191],FAIL,"W191 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[192],FAIL,"W192 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[193],FAIL,"W193 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[194],FAIL,"W194 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[195],FAIL,"W195 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[196],FAIL,"W196 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[197],FAIL,"W197 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[198],FAIL,"W198 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[199],FAIL,"W199 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[200],FAIL,"W200 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[201],FAIL,"W201 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[202],FAIL,"W202 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[203],FAIL,"W203 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[204],FAIL,"W204 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[205],FAIL,"W205 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[206],FAIL,"W206 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[207],FAIL,"W207 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[208],FAIL,"W208 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[209],FAIL,"W209 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[210],FAIL,"W210 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[211],FAIL,"W211 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[212],FAIL,"W212 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[213],FAIL,"W213 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[214],FAIL,"W214 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[215],FAIL,"W215 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[216],FAIL,"W216 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[217],FAIL,"W217 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[218],FAIL,"W218 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[219],FAIL,"W219 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[220],FAIL,"W220 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[221],FAIL,"W221 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[222],FAIL,"W222 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[223],FAIL,"W223 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[224],FAIL,"W224 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[225],FAIL,"W225 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[226],FAIL,"W226 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[227],FAIL,"W227 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[228],FAIL,"W228 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[229],FAIL,"W229 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[230],FAIL,"W230 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[231],FAIL,"W231 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[232],FAIL,"W232 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[233],FAIL,"W233 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[234],FAIL,"W234 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[235],FAIL,"W235 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[236],FAIL,"W236 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[237],FAIL,"W237 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[238],FAIL,"W238 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[239],FAIL,"W239 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[240],FAIL,"W240 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[241],FAIL,"W241 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[242],FAIL,"W242 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[243],FAIL,"W243 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[244],FAIL,"W244 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[245],FAIL,"W245 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[246],FAIL,"W246 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[247],FAIL,"W247 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[248],FAIL,"W248 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[249],FAIL,"W249 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[250],FAIL,"W250 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[251],FAIL,"W251 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[252],FAIL,"W252 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[253],FAIL,"W253 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[254],FAIL,"W254 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[255],FAIL,"W255 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[256],FAIL,"W256 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[257],FAIL,"W257 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[258],FAIL,"W258 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[259],FAIL,"W259 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[260],FAIL,"W260 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[261],FAIL,"W261 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[262],FAIL,"W262 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[263],FAIL,"W263 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[264],FAIL,"W264 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[265],FAIL,"W265 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[266],FAIL,"W266 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[267],FAIL,"W267 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[268],FAIL,"W268 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[269],FAIL,"W269 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[270],FAIL,"W270 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[271],FAIL,"W271 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[272],FAIL,"W272 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[273],FAIL,"W273 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[274],FAIL,"W274 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[275],FAIL,"W275 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[276],FAIL,"W276 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[277],FAIL,"W277 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[278],FAIL,"W278 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[279],FAIL,"W279 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[280],FAIL,"W280 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[281],FAIL,"W281 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[282],FAIL,"W282 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[283],FAIL,"W283 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[284],FAIL,"W284 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[285],FAIL,"W285 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[286],FAIL,"W286 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[287],FAIL,"W287 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[288],FAIL,"W288 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[289],FAIL,"W289 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[290],FAIL,"W290 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[291],FAIL,"W291 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[292],FAIL,"W292 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[293],FAIL,"W293 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[294],FAIL,"W294 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[295],FAIL,"W295 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[296],FAIL,"W296 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[297],FAIL,"W297 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[298],FAIL,"W298 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[299],FAIL,"W299 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[300],FAIL,"W300 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[301],FAIL,"W301 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[302],FAIL,"W302 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[303],FAIL,"W303 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[304],FAIL,"W304 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[305],FAIL,"W305 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[306],FAIL,"W306 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[307],FAIL,"W307 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[308],FAIL,"W308 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[309],FAIL,"W309 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[310],FAIL,"W310 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[311],FAIL,"W311 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[312],FAIL,"W312 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[313],FAIL,"W313 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[314],FAIL,"W314 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[315],FAIL,"W315 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[316],FAIL,"W316 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[317],FAIL,"W317 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[318],FAIL,"W318 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[319],FAIL,"W319 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[320],FAIL,"W320 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[321],FAIL,"W321 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[322],FAIL,"W322 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[323],FAIL,"W323 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[324],FAIL,"W324 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[325],FAIL,"W325 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[326],FAIL,"W326 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[327],FAIL,"W327 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[328],FAIL,"W328 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[329],FAIL,"W329 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[330],FAIL,"W330 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[331],FAIL,"W331 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[332],FAIL,"W332 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[333],FAIL,"W333 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[334],FAIL,"W334 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[335],FAIL,"W335 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[336],FAIL,"W336 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[337],FAIL,"W337 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[338],FAIL,"W338 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[339],FAIL,"W339 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[340],FAIL,"W340 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[341],FAIL,"W341 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[342],FAIL,"W342 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[343],FAIL,"W343 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[344],FAIL,"W344 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[345],FAIL,"W345 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[346],FAIL,"W346 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[347],FAIL,"W347 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[348],FAIL,"W348 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[349],FAIL,"W349 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[350],FAIL,"W350 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[351],FAIL,"W351 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[352],FAIL,"W352 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[353],FAIL,"W353 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[354],FAIL,"W354 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[355],FAIL,"W355 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[356],FAIL,"W356 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[357],FAIL,"W357 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[358],FAIL,"W358 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[359],FAIL,"W359 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[360],FAIL,"W360 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[361],FAIL,"W361 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[362],FAIL,"W362 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[363],FAIL,"W363 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[364],FAIL,"W364 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[365],FAIL,"W365 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[366],FAIL,"W366 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[367],FAIL,"W367 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[368],FAIL,"W368 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[369],FAIL,"W369 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[370],FAIL,"W370 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[371],FAIL,"W371 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[372],FAIL,"W372 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[373],FAIL,"W373 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[374],FAIL,"W374 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[375],FAIL,"W375 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[376],FAIL,"W376 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[377],FAIL,"W377 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[378],FAIL,"W378 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[379],FAIL,"W379 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[380],FAIL,W380 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[381],FAIL,W381 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[382],FAIL,W382 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[383],FAIL,W383 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[384],FAIL,W384 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[385],FAIL,W385 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[386],FAIL,W386 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[387],FAIL,"W387 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[388],FAIL,"W388 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[389],FAIL,W389 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[390],FAIL,W390 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[391],FAIL,W391 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[392],FAIL,W392 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[393],FAIL,W393 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[394],FAIL,W394 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[395],FAIL,W395 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[396],FAIL,"W396 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[397],FAIL,"W397 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[398],FAIL,W398 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[399],FAIL,W399 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[400],FAIL,W400 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[401],FAIL,W401 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[402],FAIL,W402 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[403],FAIL,W403 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[404],FAIL,W404 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[405],FAIL,"W405 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[406],FAIL,"W406 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[407],FAIL,W407 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[408],FAIL,W408 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[409],FAIL,W409 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[410],FAIL,W410 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[411],FAIL,W411 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[412],FAIL,W412 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[413],FAIL,W413 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[414],FAIL,"W414 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[415],FAIL,"W415 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[416],FAIL,W416 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[417],FAIL,W417 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[418],FAIL,W418 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[419],FAIL,W419 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[420],FAIL,W420 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[421],FAIL,W421 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[422],FAIL,W422 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[423],FAIL,"W423 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[424],FAIL,"W424 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[425],FAIL,W425 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[426],FAIL,W426 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[427],FAIL,W427 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[428],FAIL,W428 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[429],FAIL,W429 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[430],FAIL,W430 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[431],FAIL,W431 ==> expected: <3.0E-5> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[432],FAIL,"W432 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[433],FAIL,"W433 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[434],FAIL,W434 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[435],FAIL,W435 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[436],FAIL,W436 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[437],FAIL,W437 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[438],FAIL,W438 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[439],FAIL,W439 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[440],FAIL,W440 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[441],FAIL,"W441 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[442],FAIL,"W442 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[443],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[444],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[445],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[446],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[447],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[448],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[449],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[450],FAIL,"W450 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[451],FAIL,"W451 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[452],FAIL,W452 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[453],FAIL,W453 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[454],FAIL,W454 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[455],FAIL,W455 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[456],FAIL,W456 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[457],FAIL,W457 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[458],FAIL,W458 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[459],FAIL,"W459 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[460],FAIL,"W460 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[461],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[462],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[463],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[464],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[465],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[466],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[467],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[468],FAIL,"W468 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[469],FAIL,"W469 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[470],FAIL,W470 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[471],FAIL,W471 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[472],FAIL,W472 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[473],FAIL,W473 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[474],FAIL,W474 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[475],FAIL,W475 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[476],FAIL,W476 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[477],FAIL,"W477 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[478],FAIL,"W478 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[479],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[480],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[481],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[482],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[483],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[484],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[485],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[486],FAIL,"W486 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[487],FAIL,"W487 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[488],FAIL,W488 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[489],FAIL,W489 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[490],FAIL,W490 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[491],FAIL,W491 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[492],FAIL,W492 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[493],FAIL,W493 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[494],FAIL,W494 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[495],FAIL,"W495 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[496],FAIL,"W496 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[497],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[498],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[499],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[500],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[501],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[502],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[503],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[504],FAIL,"W504 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[505],FAIL,"W505 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[506],FAIL,W506 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[507],FAIL,W507 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[508],FAIL,W508 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[509],FAIL,W509 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[510],FAIL,W510 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[511],FAIL,W511 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[512],FAIL,W512 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[513],FAIL,"W513 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[514],FAIL,"W514 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[515],FAIL,W515 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[516],FAIL,W516 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[517],FAIL,W517 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[518],FAIL,W518 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[519],FAIL,W519 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[520],FAIL,W520 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[521],FAIL,W521 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[522],FAIL,"W522 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[523],FAIL,"W523 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[524],FAIL,W524 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[525],FAIL,W525 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[526],FAIL,W526 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[527],FAIL,W527 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[528],FAIL,W528 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[529],FAIL,W529 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[530],FAIL,W530 ==> expected: <1.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[531],FAIL,"W531 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[532],FAIL,"W532 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[533],FAIL,W533 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[534],FAIL,W534 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[535],FAIL,W535 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[536],FAIL,W536 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[537],FAIL,W537 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[538],FAIL,W538 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[539],FAIL,W539 ==> expected: <0.0> but was: <1.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[540],FAIL,"W540 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[541],FAIL,"W541 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[542],FAIL,"W542 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[543],FAIL,"W543 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[544],FAIL,"W544 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[545],FAIL,"W545 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[546],FAIL,"W546 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[547],FAIL,"W547 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[548],FAIL,"W548 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[549],FAIL,"W549 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[550],FAIL,"W550 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[551],FAIL,"W551 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[552],FAIL,"W552 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[553],FAIL,"W553 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[554],FAIL,"W554 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[555],FAIL,"W555 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[556],FAIL,"W556 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[557],FAIL,"W557 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[558],FAIL,"W558 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[559],FAIL,"W559 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[560],FAIL,W560 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[561],FAIL,W561 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[562],FAIL,W562 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[563],FAIL,W563 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[564],FAIL,W564 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[565],FAIL,W565 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[566],FAIL,W566 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[567],FAIL,"W567 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[568],FAIL,"W568 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[569],FAIL,W569 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[570],FAIL,W570 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[571],FAIL,W571 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[572],FAIL,W572 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[573],FAIL,W573 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[574],FAIL,W574 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[575],FAIL,W575 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[576],FAIL,"W576 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[577],FAIL,"W577 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[578],FAIL,W578 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[579],FAIL,W579 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[580],FAIL,W580 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[581],FAIL,W581 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[582],FAIL,W582 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[583],FAIL,W583 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[584],FAIL,W584 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[585],FAIL,"W585 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[586],FAIL,"W586 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[587],FAIL,W587 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[588],FAIL,W588 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[589],FAIL,W589 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[590],FAIL,W590 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[591],FAIL,W591 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[592],FAIL,W592 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[593],FAIL,W593 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[594],FAIL,"W594 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[595],FAIL,"W595 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[596],FAIL,W596 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[597],FAIL,W597 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[598],FAIL,W598 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[599],FAIL,W599 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[600],FAIL,W600 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[601],FAIL,W601 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[602],FAIL,W602 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[603],FAIL,"W603 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[604],FAIL,"W604 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[605],FAIL,W605 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[606],FAIL,W606 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[607],FAIL,W607 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[608],FAIL,W608 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[609],FAIL,W609 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[610],FAIL,W610 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[611],FAIL,W611 ==> expected: <6.0E-5> but was: <4.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[612],FAIL,"W612 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[613],FAIL,"W613 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[614],FAIL,W614 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[615],FAIL,W615 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[616],FAIL,W616 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[617],FAIL,W617 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[618],FAIL,W618 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[619],FAIL,W619 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[620],FAIL,W620 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[621],FAIL,"W621 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[622],FAIL,"W622 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[623],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[624],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[625],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[626],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[627],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[628],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[629],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[630],FAIL,"W630 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[631],FAIL,"W631 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[632],FAIL,W632 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[633],FAIL,W633 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[634],FAIL,W634 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[635],FAIL,W635 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[636],FAIL,W636 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[637],FAIL,W637 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[638],FAIL,W638 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[639],FAIL,"W639 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[640],FAIL,"W640 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[641],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[642],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[643],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[644],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[645],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[646],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[647],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[648],FAIL,"W648 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[649],FAIL,"W649 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[650],FAIL,W650 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[651],FAIL,W651 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[652],FAIL,W652 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[653],FAIL,W653 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[654],FAIL,W654 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[655],FAIL,W655 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[656],FAIL,W656 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[657],FAIL,"W657 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[658],FAIL,"W658 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[659],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[660],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[661],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[662],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[663],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[664],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[665],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[666],FAIL,"W666 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[667],FAIL,"W667 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[668],FAIL,W668 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[669],FAIL,W669 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[670],FAIL,W670 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[671],FAIL,W671 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[672],FAIL,W672 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[673],FAIL,W673 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[674],FAIL,W674 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[675],FAIL,"W675 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[676],FAIL,"W676 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[677],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[678],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[679],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[680],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[681],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[682],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[683],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[684],FAIL,"W684 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[685],FAIL,"W685 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[686],FAIL,W686 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[687],FAIL,W687 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[688],FAIL,W688 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[689],FAIL,W689 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[690],FAIL,W690 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[691],FAIL,W691 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[692],FAIL,W692 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[693],FAIL,"W693 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[694],FAIL,"W694 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[695],FAIL,W695 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[696],FAIL,W696 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[697],FAIL,W697 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[698],FAIL,W698 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[699],FAIL,W699 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[700],FAIL,W700 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[701],FAIL,W701 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[702],FAIL,"W702 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[703],FAIL,"W703 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[704],FAIL,W704 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[705],FAIL,W705 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[706],FAIL,W706 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[707],FAIL,W707 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[708],FAIL,W708 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[709],FAIL,W709 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[710],FAIL,W710 ==> expected: <2.0E-5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[711],FAIL,"W711 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[712],FAIL,"W712 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[713],FAIL,W713 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[714],FAIL,W714 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[715],FAIL,W715 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[716],FAIL,W716 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[717],FAIL,W717 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[718],FAIL,W718 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[719],FAIL,W719 ==> expected: <0.0> but was: <2.0E-5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[720],FAIL,"W720 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[721],FAIL,"W721 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[722],FAIL,"W722 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[723],FAIL,"W723 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[724],FAIL,"W724 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[725],FAIL,"W725 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[726],FAIL,"W726 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[727],FAIL,"W727 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[728],FAIL,"W728 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[729],FAIL,"W729 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[730],FAIL,"W730 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[731],FAIL,"W731 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[732],FAIL,"W732 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[733],FAIL,"W733 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[734],FAIL,"W734 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[735],FAIL,"W735 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[736],FAIL,"W736 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[737],FAIL,"W737 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[738],FAIL,"W738 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[739],FAIL,"W739 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[740],FAIL,W740 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[741],FAIL,W741 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[742],FAIL,W742 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[743],FAIL,W743 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[744],FAIL,W744 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[745],FAIL,W745 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[746],FAIL,W746 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[747],FAIL,"W747 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[748],FAIL,"W748 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[749],FAIL,W749 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[750],FAIL,W750 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[751],FAIL,W751 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[752],FAIL,W752 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[753],FAIL,W753 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[754],FAIL,W754 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[755],FAIL,W755 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[756],FAIL,"W756 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[757],FAIL,"W757 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[758],FAIL,W758 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[759],FAIL,W759 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[760],FAIL,W760 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[761],FAIL,W761 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[762],FAIL,W762 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[763],FAIL,W763 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[764],FAIL,W764 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[765],FAIL,"W765 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[766],FAIL,"W766 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[767],FAIL,W767 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[768],FAIL,W768 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[769],FAIL,W769 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[770],FAIL,W770 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[771],FAIL,W771 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[772],FAIL,W772 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[773],FAIL,W773 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[774],FAIL,"W774 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[775],FAIL,"W775 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[776],FAIL,W776 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[777],FAIL,W777 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[778],FAIL,W778 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[779],FAIL,W779 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[780],FAIL,W780 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[781],FAIL,W781 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[782],FAIL,W782 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[783],FAIL,"W783 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[784],FAIL,"W784 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[785],FAIL,W785 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[786],FAIL,W786 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[787],FAIL,W787 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[788],FAIL,W788 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[789],FAIL,W789 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[790],FAIL,W790 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[791],FAIL,W791 ==> expected: <1.5> but was: <1.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[792],FAIL,"W792 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[793],FAIL,"W793 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[794],FAIL,W794 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[795],FAIL,W795 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[796],FAIL,W796 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[797],FAIL,W797 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[798],FAIL,W798 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[799],FAIL,W799 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[800],FAIL,W800 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[801],FAIL,"W801 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[802],FAIL,"W802 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[803],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[804],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[805],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[806],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[807],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[808],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[809],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[810],FAIL,"W810 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[811],FAIL,"W811 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[812],FAIL,W812 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[813],FAIL,W813 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[814],FAIL,W814 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[815],FAIL,W815 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[816],FAIL,W816 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[817],FAIL,W817 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[818],FAIL,W818 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[819],FAIL,"W819 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[820],FAIL,"W820 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[821],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[822],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[823],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[824],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[825],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[826],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[827],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[828],FAIL,"W828 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[829],FAIL,"W829 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[830],FAIL,W830 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[831],FAIL,W831 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[832],FAIL,W832 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[833],FAIL,W833 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[834],FAIL,W834 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[835],FAIL,W835 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[836],FAIL,W836 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[837],FAIL,"W837 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[838],FAIL,"W838 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[839],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[840],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[841],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[842],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[843],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[844],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[845],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[846],FAIL,"W846 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[847],FAIL,"W847 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[848],FAIL,W848 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[849],FAIL,W849 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[850],FAIL,W850 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[851],FAIL,W851 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[852],FAIL,W852 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[853],FAIL,W853 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[854],FAIL,W854 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[855],FAIL,"W855 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[856],FAIL,"W856 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[857],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[858],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[859],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[860],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[861],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[862],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[863],PASS,
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[864],FAIL,"W864 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[865],FAIL,"W865 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[866],FAIL,W866 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[867],FAIL,W867 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[868],FAIL,W868 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[869],FAIL,W869 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[870],FAIL,W870 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[871],FAIL,W871 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[872],FAIL,W872 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[873],FAIL,"W873 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[874],FAIL,"W874 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[875],FAIL,W875 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[876],FAIL,W876 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[877],FAIL,W877 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[878],FAIL,W878 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[879],FAIL,W879 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[880],FAIL,W880 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[881],FAIL,W881 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[882],FAIL,"W882 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[883],FAIL,"W883 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[884],FAIL,W884 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[885],FAIL,W885 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[886],FAIL,W886 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[887],FAIL,W887 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[888],FAIL,W888 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[889],FAIL,W889 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[890],FAIL,W890 ==> expected: <0.5> but was: <0.0>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[891],FAIL,"W891 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[892],FAIL,"W892 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[893],FAIL,W893 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[894],FAIL,W894 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[895],FAIL,W895 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[896],FAIL,W896 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[897],FAIL,W897 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[898],FAIL,W898 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[899],FAIL,W899 ==> expected: <0.0> but was: <0.5>
+bank.utils.FeesCalculatorWithdrawTest,withdrawalBoundaryTests()[900],FAIL,"W900 ==> Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown."

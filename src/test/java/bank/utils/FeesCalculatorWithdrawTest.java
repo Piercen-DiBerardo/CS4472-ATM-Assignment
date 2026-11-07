@@ -1,112 +1,87 @@
-
 package bank.utils;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
+/**
+ * Assignment 1, Withdrawal: Robust Worst Case Boundary Value Analysis.
+ * Full Cartesian product, including simultaneous invalid inputs.
+ * Domains and invalid-input assumptions: docs/assignment1.md, section 2.1.
+ */
 class FeesCalculatorWithdrawTest {
 
-    FeesCalculator calculator = new FeesCalculator();
+    private final FeesCalculator calculator = new FeesCalculator();
 
-    private void checkFee(double amount, double bal,
-            boolean student, int dayOfWeek, double expectedFee) {
+    // Money uses a $0.01 step. Amount > 0 has no specified upper bound.
+    private final double[] amounts = {-0.01, 0, 0.01, 0.02, 500};
 
-        double actualFee = calculator.calculateWithdrawalFee(
-                amount, bal, student, dayOfWeek);
+    // Lower boundary and both fee thresholds, each with below/at/above probes.
+    // There is no specified upper balance boundary.
+    private final double[] balances = {
+        -0.01, 0, 0.01, 999.99, 1000, 1000.01,
+        3000, 4999.99, 5000, 5000.01
+    };
 
-        String result = Math.abs(expectedFee - actualFee) <= 0.0001
-                ? "PASS" : "FAIL";
+    private final boolean[] studentValues = {true, false};
 
-        System.out.printf(
-                "Amount: %.2f | Balance: %.2f | Student: %b"
-                + " | Day: %d | Expected: %.4f"
-                + " | Actual: %.4f | %s%n",
-                amount, bal, student, dayOfWeek,
-                expectedFee, actualFee, result
-        );
+    // Calendar domain 1..7, including min- and max+.
+    private final int[] days = {0, 1, 2, 3, 4, 5, 6, 7, 8};
 
-        assertEquals(expectedFee, actualFee, 0.0001);
-    }
-
-    // Calculate the expected fee
-    private double expectedFee(double amount, double balance,
-            boolean student, int dayOfWeek) {
-
+    private double expectedFee(double amount, double balance, boolean student, int day) {
         if (student) {
-            if (dayOfWeek != Calendar.SATURDAY
-                    && dayOfWeek != Calendar.SUNDAY) {
-                return 0.0;
-            }
-
-            return amount * 0.001;
+            return day == Calendar.SATURDAY || day == Calendar.SUNDAY
+                    ? amount * 0.001 : 0.0;
         }
-
         if (balance < 1000) {
             return amount * 0.003;
         }
-
-        if (balance < 5000) {
-            return amount * 0.001;
-        }
-
-        return 0.0;
+        return balance < 5000 ? amount * 0.001 : 0.0;
     }
 
-    // Boundary values around $1,000 and $5,000.
-    // Negative and zero balances are included as explicit
-    // assumptions for testing unusual input conditions.
-    private final double[] balances = {
-        -1, 0, 500, 999, 1000,
-        1001, 3000, 4999, 5000, 5001
-    };
-
-    // Representative withdrawal amounts.
-    // The fee specification does not define an amount threshold.
-    private final double[] amounts = {
-        20, 50, 100, 200, 500, 999, 1000
-    };
-
-    private final boolean[] studentValues = {
-        true, false
-    };
-
-    private final int[] days = {
-        Calendar.MONDAY,
-        Calendar.SATURDAY
-    };
+    private void checkFee(String id, double amount, double balance, boolean student, int day) {
+        boolean invalid = amount <= 0 || balance < 0 || day < 1 || day > 7;
+        if (invalid) {
+            // Explicit robustness assumption; rejection is not specified in the handout.
+            // Do not misreport these as confirmed violations of a stated exception rule.
+            assertThrows(IllegalArgumentException.class,
+                    () -> {
+                        double actual = calculator.calculateWithdrawalFee(amount, balance, student, day);
+                        System.out.printf(Locale.ROOT, "%s actual=%.9f%n", id, actual);
+                    }, id);
+        } else {
+            double expected = expectedFee(amount, balance, student, day);
+            double actual = calculator.calculateWithdrawalFee(amount, balance, student, day);
+            System.out.printf(Locale.ROOT, "%s actual=%.9f%n", id, actual);
+            // No currency-rounding policy is specified; retain sub-cent fee precision.
+            assertEquals(expected, actual, 0.000000001, id);
+        }
+    }
 
     @TestFactory
     Stream<DynamicTest> withdrawalBoundaryTests() {
-
         Stream.Builder<DynamicTest> tests = Stream.builder();
-
+        int number = 0;
         for (double amount : amounts) {
             for (double balance : balances) {
                 for (boolean student : studentValues) {
                     for (int day : days) {
-
-                        double expected = expectedFee(
-                                amount, balance, student, day);
-
-                        String name = String.format(
-                                "Amount=%.2f Balance=%.2f Student=%b Day=%d",
-                                amount, balance, student, day);
-
-                        tests.add(DynamicTest.dynamicTest(
-                                name,
-                                () -> checkFee(
-                                        amount, balance,
-                                        student, day, expected)
-                        ));
+                        String id = String.format(Locale.ROOT, "W%03d", ++number);
+                        String name = String.format(Locale.ROOT,
+                                "%s amount=%.2f balance=%.2f student=%b day=%d",
+                                id, amount, balance, student, day);
+                        tests.add(DynamicTest.dynamicTest(name,
+                                () -> checkFee(id, amount, balance, student, day)));
                     }
                 }
             }
         }
-
         return tests.build();
     }
 }
