@@ -377,15 +377,15 @@ I compared the failing test results with the fee rules in the assignment specifi
 
 Several tests may be affected by more than one error, so I grouped the suspected faults below.
 
-| Fault | Suspected Problem | Evidence |
+| Failing test | Suspected fault (file, method, line) | One-line justification |
 |---|---|---|
-| TF-01 | Student amount threshold uses $100 instead of $200. | S17 uses a $150 transfer, which should follow the under-$200 rules. |
-| TF-02 | Student source balance threshold uses $1,000 instead of $2,000. | S14 uses a $1,500 source balance, which should still be below the threshold. |
-| TF-03 | Student fee percentages are incorrect. | S10–S13 and ST5–ST8 return fees that are too high, including cases away from the main amount and balance boundaries. |
-| TF-04 | Non-student source threshold for transfers below $100 uses $1,000 instead of $4,000. | N10 uses a $2,000 source balance, which should be in the lower-balance branch. |
-| TF-05 | Non-student destination threshold for transfers below $100 uses $1,000 instead of $2,000. | The specified threshold differs from the condition identified in the implementation. |
-| TF-06 | Non-student source threshold for transfers of $100 or more uses $1,000 instead of $2,000. | N15 uses a $1,500 source balance, which should be below the $2,000 threshold. |
-| TF-07 | Non-student fee percentages are incorrect. | NS1–NS8 all return incorrect fees, including cases without threshold ambiguity. |
+| FeesCalculatorTransferTest ST1–ST4, S14, S15, S16, S17 | FeesCalculator.java, calculateTransferFee, line 80 (amount < 100.00) | Student amount threshold should be $200, not $100, so student transfers of $100–$199 follow the ≥ $200 rules |
+| FeesCalculatorTransferTest S14 | FeesCalculator.java, calculateTransferFee, lines 81 and 95 (fromAccountBalance < 1000.00) | Student source threshold should be $2,000, not $1,000, so S14's $1,500 source balance is treated as ≥ $2,000 |
+| FeesCalculatorTransferTest ST1–ST8, S9–S17 | FeesCalculator.java, calculateTransferFee, lines 83, 85, 89, 91, 97, 99, 103, 105 | Student fee percentages are 10× too high, so fees are wrong even in the correct branch (ST5 returns $1.25 instead of $0.125) |
+| FeesCalculatorTransferTest N10 | FeesCalculator.java, calculateTransferFee, line 111 (fromAccountBalance < 1000.00) | Non-student (< $100) source threshold should be $4,000, not $1,000, so N10's $2,000 source balance takes the higher-balance branch |
+| FeesCalculatorTransferTest N15 | FeesCalculator.java, calculateTransferFee, line 125 (fromAccountBalance < 1000.00) | Non-student (≥ $100) source threshold should be $2,000, not $1,000, so N15's $1,500 source balance takes the higher-balance branch |
+| FeesCalculatorTransferTest NS1–NS8, N9–N15 | FeesCalculator.java, calculateTransferFee, lines 113, 115, 119, 121, 127, 129, 133, 135 | Non-student fee percentages don't match the spec, so NS1 returns $1.00 instead of $0.10 and NS8 returns $8.25 instead of $0.375 |
+
 
 **Student transfers**
 
